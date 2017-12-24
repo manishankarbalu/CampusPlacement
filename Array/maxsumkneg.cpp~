@@ -1,0 +1,45 @@
+// C++ program to to maximize array sum after
+// k operations.
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// This function does k operations on array
+// in a way that maximize the array sum.
+// index --> stores the index of current minimum
+//           element for j'th operation
+int maximumSum(int arr[], int n, int k)
+{
+int sum=0;
+   for(int i=0;i<k;i++)
+{
+    int min=INT_MAX;
+      int index=0;
+     for(int j=0;j<n;j++)
+    {
+
+         if(min>arr[j])
+              {
+                min=arr[j];
+                index=j;
+              }
+          if(min==0)
+                break;
+         
+    }
+arr[index]=-arr[index];
+
+}
+for(int i=0;i<n;i++)
+    sum=sum+arr[i];
+return sum;
+}
+ 
+// Driver program to test the case
+int main()
+{
+    int arr[] = {-2, 0, 5, -1, 2};
+    int k = 4;
+    int n = sizeof(arr)/sizeof(arr[0]);
+    cout << maximumSum(arr, n, k)<<endl;
+    return 0;
+}

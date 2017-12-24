@@ -1,0 +1,32 @@
+// A simple C++ program to find if there is a pair
+// with given product.
+#include<bits/stdc++.h>
+using namespace std;
+ 
+// Returns true if there is a pair in arr[0..n-1]
+// with product equal to x.
+bool isProduct(int arr[], int n, int x)
+{
+   unordered_set<int> s;
+   for(int i=0;i<n;i++)
+   {
+        if(s.find(x/arr[i])!=s.end())
+             return true;
+           s.insert(arr[i]);
+   }
+return false;
+}
+ 
+// Driver code
+int main()
+{
+    int arr[] = {10, 20, 9, 40};
+    int x = 400;
+    int n = sizeof(arr)/sizeof(arr[0]);
+    isProduct(arr, n, x)? cout << "Yes\n"
+                        : cout << "No\n";
+    x = 190;
+    isProduct(arr, n, x)? cout << "Yes\n"
+                        : cout << "No\n";
+    return 0;
+}

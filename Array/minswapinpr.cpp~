@@ -1,0 +1,73 @@
+// C++ program to find minimum number of swaps required so that
+// all pairs become adjacent.
+#include<bits/stdc++.h>
+using namespace std;
+
+int minSwaps(int arr[],int n)
+{
+
+pair<int,int> p[n];
+
+for(int i=0;i<n;i++)
+   {p[i].first=arr[i];
+    p[i].second=i;
+   }cout<<'\n';
+for(int i=0;i<n;i++)
+   {cout<<'\n'<<p[i].first;
+    cout<<','<<p[i].second;
+   }
+sort(p,p+n);
+cout<<'\n';
+
+for(int i=0;i<n;i++)
+   {cout<<'\n'<<p[i].first;
+    cout<<','<<p[i].second;
+   }
+vector<bool> vis(n,false);
+
+int ans=0;
+for(int i=0;i<n;i++)
+ {
+    if(vis[i]||arr[i]==i)
+     continue;
+ int j=i,cycle_size=0;
+   while(!vis[j])
+   {
+        vis[j]=1;
+          j=p[j].second;
+        cycle_size++;
+   }
+   ans=ans+cycle_size-1;
+ }
+return ans;
+}
+
+
+// Driver program
+int main()
+{
+	// For simplicity, it is assumed that arr[0] is
+	// not used. The elements from index 1 to n are
+	// only valid elements
+	int arr[] = {0, 3, 5, 6, 4, 1, 2};
+
+	// if (a, b) is pair than we have assigned elements
+	// in array such that pairs[a] = b and pairs[b] = a
+	int pairs[] = {0, 3, 6, 1, 5, 4, 2};
+  int n=sizeof(arr)/sizeof(arr[0]);
+     unordered_map<int,int> mp;
+    for(int i=0;i<n;i++)
+      mp[pairs[i]]=i;
+
+    for(int i=0;i<n;i++)
+      {
+         arr[i]=mp[arr[i]];
+      }
+for(int i=0;i<n;i++)
+      cout<<arr[i]<<endl;
+
+
+	cout << "Min swaps required is " << minSwaps(arr,n);
+	return 0;
+}
+

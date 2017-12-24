@@ -1,0 +1,10 @@
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        r=[]
+        for i in range(0,len(nums)+1):
+            r+=([list(x) for x in itertools.combinations(nums,i)])
+        return r

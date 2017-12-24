@@ -1,0 +1,17 @@
+class Solution(object):
+    def intersection(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
+        l=[]
+        k=[]
+        for i in nums1:
+            for j in nums2:
+                if(i==j):
+                    l.append(i)
+        #k = list(l for l, _ in itertools.groupby(l))
+        k=list(set(l))
+        return k
+    

@@ -1,0 +1,40 @@
+// A divide and conquer solution to find count of zeroes in an array
+// where all 1s are present before all 0s
+#include <stdio.h>
+ 
+/* if 0 is present in arr[] then returns the index of FIRST occurrence
+   of 0 in arr[low..high], otherwise returns -1 */
+int firstZero(int arr[], int low, int high)
+{int mid;
+   if(low<high)
+        mid=(low+high)/2;
+   
+     if(arr[mid+1]==0 && arr[mid-1]==1)
+          return mid;
+      else 
+            if(arr[mid+1]!=0)
+                  return firstZero(arr,mid+1,high);
+        else
+                  return firstZero(arr,low,mid-1);
+
+}
+ 
+// A wrapper over recursive function firstZero()
+int countZeroes(int arr[], int n)
+{
+    if(n<2)
+       return -1;
+   else
+      
+      return firstZero(arr,0,n-1);       
+
+}
+ 
+/* Driver program to check above functions */
+int main()
+{
+    int arr[] =   {1, 1, 1, 0, 0, 0, 0, 0};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    printf("Count of zeroes is %d", countZeroes(arr, n));
+    return 0;
+}

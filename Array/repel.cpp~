@@ -1,0 +1,27 @@
+#include<iostream>
+#include<algorithm>
+#include<iterator>
+using namespace std;
+
+int findRepEl(int arr[],int n)
+{
+int t=arr[0];
+for(int i=1;i<n;i++)
+    t=t^arr[i];
+return t;
+}
+
+int main()
+{
+int arr[5];
+arr[0]=1;
+arr[1]=2;
+arr[2]=3;
+arr[3]=4;
+arr[4]=4;
+//arr[5]=5;
+int n=sizeof(arr)/sizeof(arr[0]);
+int rep=findRepEl(arr,n);
+cout<<"rep el is "<<rep<<endl;
+return 0;
+}

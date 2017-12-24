@@ -1,0 +1,54 @@
+// C++ program to rearrange array in alternating
+// positive & negative items with O(1) extra space
+#include <bits/stdc++.h>
+using namespace std;
+ // Utility function to print an array
+void printArray(int arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+      cout << arr[i] << " ";
+    cout << endl;
+}
+// Function to rearrange positive and negative
+// integers in alternate fashion. The below
+// solution doesn't maintain original order of
+// elements
+void rearrange(int arr[], int n)
+{
+   int i=-1,j=n;
+   while(i<j)
+   {
+   while(arr[++i]>0);
+   while(arr[--j]<0);
+     if(i<j)
+          swap(arr[i],arr[j]);    
+   }
+  printArray(arr,n);
+ int k=0;
+ cout<<i;
+  for(k=1;k<n&&i<n;)
+  {
+       swap(arr[k],arr[i]);
+    k=k+2;i=i+1;
+  }
+}
+ 
+// Utility function to print an array
+ 
+// Driver code
+int main()
+{
+    int arr[] = {2, 3, -4, -1, 6, -9};
+ 
+    int n = sizeof(arr)/sizeof(arr[0]);
+ 
+    cout << "Given array is \n";
+    printArray(arr, n);
+ 
+    rearrange(arr, n);
+ 
+    cout << "Rearranged array is \n";
+    printArray(arr, n);
+ 
+    return 0;
+}

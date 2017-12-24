@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+int main()
+{
+
+string str="hello how are you";
+string s1;
+stringstream ss(str);
+ while(ss >> s1)
+   cout<<s1;
+
+
+return 0;
+}

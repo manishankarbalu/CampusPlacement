@@ -1,0 +1,45 @@
+// C++ program for implementation of Sieve of Atkin
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// Merge ar1[] and ar2[] with O(1) extra space
+void merge(int a[], int b[], int m, int n)
+{
+       int last=a[m-1];
+
+    for(int i=n-1;i>=0;i--)
+   {  
+            int j=m-1;
+       for(;j>=0 && a[j]>b[i];j--)
+         {
+              a[j+1]=a[j];
+         }
+   if(j!=m-1)
+   {
+       a[j+1]=b[i];
+       b[i]=last;
+   }
+
+
+   }
+
+
+}
+ 
+// Driver program
+int main(void)
+{
+    int ar1[] = {1, 5, 9, 10, 15, 20};
+    int ar2[] = {2, 3, 8, 13};
+    int m = sizeof(ar1)/sizeof(ar1[0]);
+    int n = sizeof(ar2)/sizeof(ar2[0]);
+    merge(ar1, ar2, m, n);
+ 
+    cout << "After Merging \nFirst Array: ";
+    for (int i=0; i<m; i++)
+        cout << ar1[i] << " ";
+    cout << "\nSecond Array: ";
+    for (int i=0; i<n; i++)
+        cout << ar2[i] << " ";
+   return 0;
+}

@@ -1,0 +1,41 @@
+#include<iostream>
+#include<algorithm>
+#include<iterator>
+using namespace std;
+
+int findRepEl(int arr[],int low,int high)
+{
+cout<<"check  ";
+   if(!(low<high))
+      {
+cout<<"pass   ";
+  return -1;
+}      
+   int mid=(low+high)/2;
+   
+  if(arr[mid]!=mid+1)
+  {
+    if(mid>0 && arr[mid]==arr[mid-1])
+      return mid;
+  else 
+   return findRepEl(arr,low,mid-1);
+  }
+ 
+return findRepEl(arr,mid+1,high);
+
+}
+
+int main()
+{
+int arr[6];
+arr[0]=1;
+arr[1]=2;
+arr[2]=3;
+arr[3]=3;
+arr[4]=4;
+arr[5]=5;
+int n=sizeof(arr)/sizeof(arr[0]);
+int rep=findRepEl(arr,0,n-1);
+cout<<"rep el is "<<rep<<endl;
+return 0;
+}

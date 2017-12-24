@@ -1,0 +1,53 @@
+// Program to find best buying and selling days
+#include <bits/stdc++.h>
+#include <vector>
+#include<iostream>
+std::vector<int> v;
+// This function finds the buy sell schedule for maximum profit
+void stockBuySell(int price[], int n)
+{
+int sell=price[n-1];int buy=INT_MAX;
+
+int si=n,bi=0;
+for(int i=n-2;i>=0;i--)
+{
+    if(price[i]>sell)
+    {
+        sell=price[i];si=i+1;
+      }
+    else
+    {       while(price[i]<buy && i>=0)
+            {
+                buy=price[i];
+                bi=i+1;
+                i--;
+            }    
+    }
+    if(bi)
+    {   v.push_back(bi);
+        v.push_back(si);
+    i++;
+    bi=0;si=i;buy=INT_MAX;sell=price[i];
+    }
+}
+if(v.size())
+for(int i=0;i<v.size();i=i+2)
+  printf("Buy on day: %d\t Sell on day: %d\n", v[i]-1, v[i+1]-1);
+else
+  printf("There is no day when buying the stock will make profit\n");
+}
+
+// Driver program to test above functions
+int main()
+{
+	// stock prices on consecutive days
+//	int price[] = {6,5,4,3,2,1};
+int price[] = {100, 180, 260, 310, 40, 535, 695};
+	int n = sizeof(price)/sizeof(price[0]);
+
+	// fucntion call
+	stockBuySell(price, n);
+
+	return 0;
+}
+

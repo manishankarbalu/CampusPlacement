@@ -1,0 +1,3 @@
+# Write your MySQL query statement below
+select Name Customers from Customers where id not in (select distinct(customerid) from orders)
+#select Name from Customers  minus select Customers.Name from Customers,Orders where Customers.Id=Orders.CustomerId 

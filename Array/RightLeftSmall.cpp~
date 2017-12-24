@@ -1,0 +1,62 @@
+//
+//  ideone id  -  http://ideone.com/qYpSnY
+//
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void rightsmallele(int arr[],int n,int rgarr[])
+{
+   stack<int> s;
+  // int rgarr[n];
+   for(int i=n-1;i>=0;i--)
+   {
+   	  while(!s.empty() && arr[i]<=arr[s.top()])
+   	     s.pop();
+   	    
+   	    if(!s.empty())
+   	        rgarr[i]=arr[s.top()];
+   	       else
+   	          rgarr[i]=0;
+   	          
+   	    s.push(i)  ;    
+   	 
+   }
+//return rgarr;
+}
+
+
+int main()
+{
+    int arr[] = {2, 4, 8, 7, 7, 9, 3};
+    int n = sizeof(arr)/sizeof(arr[0]);
+   
+   	int rgarr[n];
+   	int lfarr[n];
+  //rgarr=
+ rightsmallele(arr, n,rgarr);	
+ reverse(arr,arr+n);	
+ //for(int i=0;i<n;i++)
+   // cout<<arr[i];
+    //cout<<'\n';
+   rightsmallele(arr, n,lfarr);
+   // cout << "Maximum diff :  "
+     //    << findMaxDiff(arr, n) << endl;
+for(int i=0;i<n;i++)
+    cout<<rgarr[i];
+    cout<<'\n';
+reverse(lfarr,lfarr+n);
+for(int i=0;i<n;i++)
+    cout<<lfarr[i];
+    cout<<'\n';
+int max1=0;
+for(int i=0;i<n;i++)
+  {
+     max1=max(max1,abs(rgarr[i]-lfarr[i]));
+  } 
+cout<<max1;
+
+    return 0;
+}

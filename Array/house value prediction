@@ -1,0 +1,34 @@
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn import linear_model
+import numpy as np
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+line1 = raw_input().split(' ')
+n_features = int (line1[0])
+n_people = int (line1[1])
+
+data = []
+
+for i in range(n_people):
+    data.append(raw_input().split(' '))
+n_test=int(raw_input())
+test=[]
+for i in range(n_test):
+    test.append(raw_input().split(' '))
+data = np.asarray(data).astype(np.float64)
+features = data[:,0:n_features]
+label = data[:,-1]
+
+test = np.asarray(test).astype(np.float64)
+
+poly = PolynomialFeatures(degree=3)
+X_ = poly.fit_transform(features)
+predict_ = poly.fit_transform(test)
+
+clf = linear_model.LinearRegression()
+clf.fit(X_, label)
+pred = clf.predict(predict_)
+
+for i in pred:
+    print '%.2f'%i
+
+#regr = linear_model.PolynomialRegression()
