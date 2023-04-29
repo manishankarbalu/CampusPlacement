@@ -1,0 +1,107 @@
+Date 29-04-2023
+PS : ReverseLinkedList
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode rev = reverseList(head.next);
+        head.next.next = head;
+        head.next =null;
+        return rev;
+    }
+}
+
+--------------------------------------------------
+206. Reverse Linked List
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1==null){
+            return list2;
+        }
+        if(list2==null){
+            return list1;
+        }
+        if(list1.val <=list2.val){
+            list1.next = mergeTwoLists(list1.next,list2);
+            return list1;
+        }else{
+            list2.next = mergeTwoLists(list1,list2.next);
+            return list2;
+        }
+
+    }
+}
+
+-------------------------------------------------
+PS : 392. Is Subsequence
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int sn = s.length(),tn=t.length();
+        System.out.println(tn);
+        if(t==""){
+            return true;
+        }
+        if(sn>tn){
+            return false;
+        }
+        int i=0, j=0 ;
+        for(; i<tn && j<sn;i++) {
+            if(s.charAt(j)== t.charAt(i)) {
+                j++;
+            }            
+        }
+        System.out.println(j);
+        return j>=sn;
+        
+    }
+}
+
+--------------------------------------------------
+PS : 205. Isomorphic Strings
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length()){
+            return false;
+        }
+        Map<Character,Character> map1 = new HashMap<>();
+        Map<Character,Character> map2 = new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            if(map1.containsKey(s.charAt(i))) {
+                if(map1.get(s.charAt(i))!=t.charAt(i)){
+                    return false;
+                }
+            }  else{
+              if(map2.containsKey(t.charAt(i))) {
+                  return false;
+              }
+            }
+            
+            map1.put(s.charAt(i),t.charAt(i));
+            map2.put(t.charAt(i),s.charAt(i));
+        }
+return true;
+        
+    }
+}
+
+------------------------------------------------------
+PS : 724. Find Pivot Index
+TotalSum
+leftSum == rightSum
+rightSum = TotalSum-leftSum - currentIndexValue
+-> leftSum = TotalSum-leftSum - currentIndexValue
+2*leftSum = TotalSum - currentIndexValue
+
+-------------------------------------------------------
